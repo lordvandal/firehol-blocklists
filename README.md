@@ -39,7 +39,8 @@ You may wish to apply some "value overrides" to the script, or delete the iptabl
 
 ## Credits
 Based on the spamhaus-drop script by wallyhall, improved and tailored for Synology DSM 7.2<br>
-Credit: https://github.com/wallyhall/spamhaus-drop
+Credit: [Matthew Hall] (https://github.com/wallyhall)
+Original repository: https://github.com/wallyhall/spamhaus-drop
 
 Improvements: [lordvandal](https://github.com/lordvandal)<br>
 Repository: https://github.com/lordvandal/dock-privoxy

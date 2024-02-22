@@ -11,6 +11,8 @@ For example, create an executable script named `/etc/cron.daily/firehol-blocklis
 #!/bin/sh
 /usr/local/sbin/firehol-blocklists -u
 ```
+Configurations reside by default in `/etc/firehol-blocklists`, consisting of `whitelist` and `blacklist`; tailor them to your need.
+By default private IP ranges are whitelisted, as they appear in the Firehol blocklists.
 
 ### Important warning
 This script **by design** downloads lists of IP ranges from a 3rd party source (firehol) and adds `DROP` instructions to your iptables firewall.
@@ -34,12 +36,10 @@ You may wish to apply some "value overrides" to the script, or delete the iptabl
   -h                   Display this help message
 
 ```
-## Todo
-Whitelists and validation.  We shouldn't implicitly trust a third party's block list!  Private IP addresses etc should be whitelisted by default, but are not.
 
 ## Credits
-Based on the spamhaus-drop script by wallyhall, improved and tailored for Synology DSM 7.2
+Based on the spamhaus-drop script by wallyhall, improved and tailored for Synology DSM 7.2<br>
 Credit: https://github.com/wallyhall/spamhaus-drop
 
-Improvements: [lordvandal](https://github.com/lordvandal)
+Improvements: [lordvandal](https://github.com/lordvandal)<br>
 Repository: https://github.com/lordvandal/dock-privoxy

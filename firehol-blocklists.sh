@@ -41,6 +41,8 @@ SKIP_FAILED_DOWNLOADS=0
 # log blocklist hits in iptables
 LOG_BLOCKLIST_HITS=0
 
+INDEX=1
+
 error() {
 	echo "$1" 1>&2
 }
@@ -109,11 +111,11 @@ download_rules() {
 		if [ ${PIPESTATUS[0]} -ne 0 ]; then
 			if [ $SKIP_FAILED_DOWNLOADS -eq 1 ]; then
 				echo "Failed to download '$URL' while skipping is enabled - so continuing."
+				cat "$CACHE_FILE" >> "$TMP_FILE"
 			else
 #				rm -f "$TMP_FILE"
 #				die "Failed to download '$URL', aborting."
 				die "Failed to download '$URL', falling back to cache file instead."
-				cat "$CACHE_FILE" >> "$TMP_FILE"
 			fi
 		fi
 	done
@@ -153,7 +155,7 @@ download_rules() {
 	sort -o "$TMP_FILE" -u "$TMP_FILE" > /dev/null 2>&1
 
 	mv -f "$TMP_FILE" "$CACHE_FILE"
-	rm -f "$TMP_FILE"
+#	rm -f "$TMP_FILE"
 }
 
 update_iptables() {
@@ -195,7 +197,7 @@ update_iptables() {
 	$IPTABLES_RESTORE -n -T filter < "$TMP_FILE"
 	echo "'$CHAIN' chain updated with latest rules."
 
-	rm -f $TMP_FILE
+#	rm -f $TMP_FILE
 }
 
 download_rules_and_update_iptables() {
